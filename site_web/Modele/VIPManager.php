@@ -20,7 +20,11 @@ class VIPManager extends Model
 		return $req->fetch();
 	}
 	
-
+	public function getAllVIP()
+	{
+		$req=$this->executerRequete('SELECT * FROM VIP');
+		return $req->fetchAll();
+	}
 	
 	public function getNomVIP($numVIP)
 	{

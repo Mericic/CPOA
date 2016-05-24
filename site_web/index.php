@@ -15,11 +15,9 @@ if(isset($_GET['page']))
 {
 	if($_GET['page']=='accueil')//page d'accueil
 	{
-		echo 'accueil';
 		include_once('Vue/accueil.php');
 	}else if($_GET['page']=='ficheVIP')//fiche de description d'un VIP
 	{
-		echo'fiche vip';
 		include_once('Controlleur/infosVIP.php');
 		include_once('Vue/ficheVIP.php');
 	}else if($_GET['page']=='Creation')//Creation de compte
@@ -39,7 +37,6 @@ if(isset($_GET['page']))
 		echo'film';
 	}elseif($_GET['page']=='ListeFilms')
 	{
-		echo'liste films';
 		include_once('Controlleur/InfoFilms.php');
 		include_once('Vue/ListeFilms.php');
 	}

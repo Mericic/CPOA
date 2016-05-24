@@ -2,20 +2,16 @@
 class FilmManager extends Model
 {
 
-	public function getInfoFilmByTitle($Titre)
+	public function getInfoFilmByGenre($Genre)
 	{
-		$req=$this->executerRequete('SELECT * FROM Film');
-		return $req->fetch();
+		$req=$this->executerRequete('SELECT * FROM Film WHERE LibelleGenre = ?', array($Genre));
+		return $req->fetchAll();
 	}
 	
-	public function getInfoFilmByNumVisa($NumVisa)
+	public function getGenre()
 	{
-		
-	}
-	
-	public function getInfoFilmByCasting($numVIP)
-	{
-		
+		$req=$this->executerRequete('SELECT * FROM Genre');
+		return $req->fetchAll();
 	}
 	
 	public function getAllFilms()
