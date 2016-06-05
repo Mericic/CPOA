@@ -5,13 +5,16 @@ include_once('functions/selected.php');
 <?php
 	$baseCatwoman = new FilmManager();
 	$Cat =  $baseCatwoman->getGenre();
-	$i=2;
+	$i=1;
+	
+	
 	ob_start();
-	echo '<option value="1" '.$slct=isSelected(1).'>TOUS </option>';
+	echo '<option value="1" '.$slct=isSelected($i).'>TOUS </option>';
 		foreach($Cat as $key=>$value)
 		{
-			echo '<option value="'.$i.'" '.$slct=isSelected($i).'>'.$value['LibelleGenre'].' </option>';
 			$i=$i+1;
+			echo '<option value="'.$i.'" '.$slct=isSelected($i).'>'.$value['LibelleGenre'].' </option>';
+			
 			if(isSelected($i-1)=='selected')
 			{
 				echo 'HELLO WORLD';
@@ -20,42 +23,41 @@ include_once('functions/selected.php');
 		}
 	$option = ob_get_clean();
 
-	//____________________________________________
-	/*if(isset($_POST['genre']))
-	{
-		$InfoFilm= new FilmManager();
-		if($_POST['Titre']!=Null)
-		{
-			echo 'Seulement la description de '.$_POST['Titre'].'</br>'.
-			$unFilm = $InfoFilm -> getInfoFilmByTitle($_POST['Titre']);
-		}else
-		{
-			echo 'tous les films';
-			$tousLesFilms = $InfoFilm -> getAllFilms();
-		}
-		
-	}*/
-	//___________________________________________
+	
 	
 	
 	if(isset($_GET['Film']))
 	{
+		$InfoVIP = new VIPManager();
 		$InfoFilm= new FilmManager();
-		
+		if($_GET['Film']!=NULL)
+		{
+			$unFilm= $InfoFilm -> getInfoFilmByVisa($_GET['Film']);
+			$Casting = $InfoFilm -> getCastingByVisa($_GET['Film']);
+			$i=0;
+			foreach($Casting as $key=>$value)
+			{
+				if($value['Role']=='realisateur')
+				{
+					$realisateur= $InfoVIP -> getInfoVIPbynum($value['numVIP']);
+				}else
+				{
+					$i=$i+1;
+					$InfoCasting[$i] = array($InfoVIP -> getInfoVIPbynum($value['numVIP']));
+				}
+				
+			}
+		}
 	}
 	else if(isset($_POST['genre']))
 	{
 		$InfoFilm = new FilmManager();
 		if($_POST['genre']=="1")
 		{
-			echo 'tous les films';
 			$tousLesFilms = $InfoFilm -> getAllFilms();
 		}else
 		{
 			$tousLesFilms = $InfoFilm -> getInfoFilmByGenre($TheCategorie);
 		}
-	}else
-
-	
-	
+	}
 ?>

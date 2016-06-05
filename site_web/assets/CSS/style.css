@@ -1,9 +1,13 @@
 body
 {
-	background-color: yellow;
+	background-color: pink;
 	
 }
+*
+{
+		margin: auto;
 
+}
 h1
 {
 	
@@ -12,7 +16,7 @@ h1
 
 header
 {
-	background-color: grey;
+	background-color: red;
 	margin-bottom:10px;
 }
 
@@ -28,31 +32,32 @@ ul
 
 
 #Menu{
-	margin-left:40%;
-	margin-right:60%;
+	margin: auto;
+	margin-left:5%;
+	margin-right:5%;
 	display:inline;
 	
 }
 
 .Choix{
+	
 	text-align:center;
 	font-size:20pt; 
-	background-color:white;
+	background-color:pink;
 	text-decoration:none;
-	padding-left:2px;
-	padding-right:2px;
-	border-radius:5px;
+	padding-left:10%;
+	padding-right:10%;
+	border-radius:10%;
 }
 
-p
+.liste
 {
-	text-align:center;
+	display: inline-block;
+	width: 12%;
+	height: 12%;
+	padding: 5px;
+	margin: 5px;
+	text-align: center;
+	background-color: blue;
+
 }
-
-table, tr, td
-{
-
-    border: 1px solid black;
-
-}
-

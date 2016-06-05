@@ -9,8 +9,8 @@ ob_start();
 
 echo '
 	<form method="post" action="index.php?page=ficheVIP">
-		<label>Nom du VIP recherché :</label> <input type="text" name="nomVIP" /></br>
-		<label>Tous afficher</laber><input type="radio" name="Tous" value="oui"/>
+		<label>Nom du VIP recherché :</label> <input type="text" name="nomVIP" />
+		<label >Tous afficher</label><input checked	 type="checkbox" name="Tous" value="oui"/>
 		<input type="submit" value="rechercher"/>
 	</form>';
 
@@ -40,36 +40,49 @@ if(isset($_POST['nomVIP']))
 	}
 
 	else if(isset($_POST['Tous']) && $_POST['Tous']=="oui" )
+	{
+		if($_POST['nomVIP']==NULL)
 		{
-			foreach($dataTous as $key=>$value)
-			{
-				echo '<table>	
-					<tr>
-						<td>
-							Image
-						</td>
-						
-						<td>	
-							'.$value['NomVIP'].', '.$value['PrenomVIP'].'
-						</td>
-						<td>
-							'.$value['DateNaissance'].'
-						</td>  
-					</tr>
-					
-					
-					<tr>
-					   <td>		Dernier Film			</td>
-					   <td>					</td>
-					</tr>
-				</table>';
-			}
-		}else if($data==FALSE)
-		{
-				echo '<p>Nom et prenom inconnus</p>';
-		}
-}
+			echo '<div class="surliste">';
+					foreach($dataTous as $Tous)
+					{//rajouter image perso							<!--<img src="assets/images/'.$value['NomFichier'].'" alt="'.$value['date'].' ">-->
 
+						echo '
+						<div class="liste">
+							<p>	'.$Tous['NomVIP'].', '.$Tous['PrenomVIP'].' --'.$Tous['DateNaissance'].'</p> 
+							<p>	Ce VIP ne joue dans aucun Film		</p>
+										<form method="post" action="index.php?page=ficheVIP">
+														<input type="hidden" name="nomVIP" value="'.$Tous['NomVIP'].'">
+														<input type="submit" value="Voir"/>
+										</form>	
+							
+						</div>
+					';
+					}
+					foreach($dataTousFilm as $TousFilm)
+					{
+							echo '<div class="liste">
+								<p>'.$TousFilm['NomVIP'].', '.$TousFilm['PrenomVIP'].' --'.$TousFilm['DateNaissance'].'</p>
+								<p>					Dernier Film '.$TousFilm['Titre'].'</p>
+								
+												<form method="post" action="index.php?page=ficheVIP">
+													<input type="hidden" name="nomVIP" value="'.$TousFilm['NomVIP'].'">
+													<input type="submit" value="Voir"/>
+												</form>
+											
+									</div>
+							';
+					
+					}
+			echo '</div>';	
+				
+		}
+	
+	}else if($data==FALSE)
+	{
+			echo '<p>Nom et prenom inconnus</p>';
+	}
+}
 
 $content=ob_get_clean();
 include_once('layout.php');

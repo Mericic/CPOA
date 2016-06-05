@@ -13,36 +13,38 @@ Session_start() ;
 
 if(isset($_GET['page']))
 {
-	if($_GET['page']=='accueil')//page d'accueil
+	switch($_GET['page'])
 	{
-		include_once('Vue/accueil.php');
-	}else if($_GET['page']=='ficheVIP')//fiche de description d'un VIP
-	{
-		include_once('Controlleur/infosVIP.php');
-		include_once('Vue/ficheVIP.php');
-	}else if($_GET['page']=='Creation')//Creation de compte
-	{
-		echo 'creat compte';
-		include_once('Creation.php');
-	}else if($_GET['page']=='Connexion')//Connection à un compte utilisateur
-	{
-		echo 'co';
-		include_once('Vue/FirtConnexion.php');
-	}else if($_GET['page']=='Photo')//Visionnage des photos présentes sur la base64_decode
-	{
-		echo 'photo';
-		include_once('Vue/album.php');
-	}else if($_GET['page']=='Film')//affichage de la description d'un film
-	{
-		echo'film';
-	}elseif($_GET['page']=='ListeFilms')
-	{
-		include_once('Controlleur/InfoFilms.php');
-		include_once('Vue/ListeFilms.php');
+		case'accueil'://page d'accueil
+			include_once('Vue/accueil.php');
+			break;
+	
+		case'ficheVIP'://fiche de description d'un VIP
+			include_once('Controlleur/infosVIP.php');
+			include_once('Vue/ficheVIP.php');
+			break;
+			
+		case'Creation'://Creation de compte
+			include_once('Creation.php');
+			break;
+			
+		case'Connexion'://Connection à un compte utilisateur
+			echo 'co';
+			include_once('Vue/FirtConnexion.php');
+			break;
+			
+		case'Photo'://Visionnage des photos présentes sur la base64_decode
+			echo 'photo';
+			include_once('Vue/album.php');
+			break;
+			
+		case'ListeFilms':
+			include_once('Controlleur/InfoFilms.php');
+			include_once('Vue/ListeFilms.php');
+			break;
 	}
 }else
 {
-	echo 'choix défaut: accueil';
 	include_once('Vue/accueil.php');
 }
 

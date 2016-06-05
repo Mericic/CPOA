@@ -11,17 +11,14 @@
 	<h1><?php echo $titlePage; ?></h1>
 	<div id="Menu">
 			<a href="index.php?page=accueil" class="Choix">Accueil</a>
-			<?php
-			//if(!isset($))?>
-			<a href="index.php?page=connexion" class="Choix">Connexion</a>
-			
+
+			<a href="index.php?page=ListeFilms	" class="Choix">Films</a>
+
 			<a href="index.php?page=ficheVIP" class="Choix">Fiches VIP</a>
 
 			<!--<a href="index.php" class="Choix">...</a>-->
-		</div>
-	<div id="UserPart">
-			<?php //echo $utilisateur;?>
 	</div>
+			<?php //echo $utilisateur;?>
 	</header>
 	<?php
 	echo $content;
