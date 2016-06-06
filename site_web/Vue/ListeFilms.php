@@ -26,27 +26,29 @@ if(isset($_GET['Film']))
 		if(isset($realisateur))
 			echo '<p>realisé par '.$realisateur['PrenomVIP'].' '.$realisateur['NomVIP'].'</p>';
 		echo '<p>Acteurs: </p>';
-		foreach($InfoCasting as $key=>$value)
-		{
-			foreach($value as $key=>$valeur)
-			{	
-			echo '<p> '.$valeur['PrenomVIP'].' '.$valeur['NomVIP'].' dans le rôle de ';
-			foreach($Casting as $key=>$Cast)
+		echo 'oihbazrgbezoibzefihbzegiobzegibzegpibzegiopbzegpib';
+			foreach($InfoCasting as $key=>$value)
 			{
-			if($Cast['numVIP']==$valeur['numVIP'])
+				foreach($value as $key=>$valeur)
+				{	
+				echo '<p> '.$valeur['PrenomVIP'].' '.$valeur['NomVIP'].' dans le rôle de ';
+				foreach($Casting as $key=>$Cast)
 				{
-					echo $Cast['Role'];
+				if($Cast['numVIP']==$valeur['numVIP'])
+					{
+						echo $Cast['Role'];
+					}
+				}
+				echo' </p>
+				<form method="post" action="index.php?page=ficheVIP">
+					<input type="hidden" name="nomVIP" value="'.$valeur['NomVIP'].'">
+					<input type="submit" value="Voir"/>
+				</form>';
+				//echo '
+					//<a href="index.php?page=ficheVIP">Profil</a> </p>';
 				}
 			}
-			echo' </p>
-			<form method="post" action="index.php?page=ficheVIP">
-				<input type="hidden" name="nomVIP" value="'.$valeur['NomVIP'].'">
-				<input type="submit" value="Voir"/>
-			</form>';
-			//echo '
-				//<a href="index.php?page=ficheVIP">Profil</a> </p>';
-			}
-		}
+		
 		echo '<p>Résumé</p>'.$unFilm['Resume'];
 	}
 }else

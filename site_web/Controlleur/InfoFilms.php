@@ -42,8 +42,10 @@ include_once('functions/selected.php');
 					$realisateur= $InfoVIP -> getInfoVIPbynum($value['numVIP']);
 				}else
 				{
-					$i=$i+1;
-					$InfoCasting[$i] = array($InfoVIP -> getInfoVIPbynum($value['numVIP']));
+
+						$i=$i+1;
+						$InfoCasting[$i] = array($InfoVIP -> getInfoVIPbynum($value['numVIP']));
+					
 				}
 				
 			}
